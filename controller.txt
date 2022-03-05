@@ -1,0 +1,163 @@
+using Dapper;
+using KendoUIApp1.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+
+namespace KendoUIApp1.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            ViewBag.Message = "Welcome to ASP.NET MVC!";
+
+            return View();
+        }
+        public ActionResult Signup()
+        {
+            return View();
+        }
+
+        private string connectionString = @"Data Source=LAPTOP-0VM259J4\KARISHMA;Initial Catalog=Task;Integrated Security=True";
+        private string connectionString1;
+
+        [HttpPost]
+        public string Signup(signupmodel model)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                connection.Execute("insert into login (FullName,DOB,Mobile,Email,Position,Gender,CurrentAddress,Pincode,City,State,Country,Username,Password) values(@FullName,@DOB,@Mobile,@Email,@Position,@Gender,@CurrentAddress,@Pincode,@City,@State,@Country,@Username,@Password)",
+                    new { fullname = model.FullName, DOB = model.DOB, Mobile = model.Mobile, Email = model.Email, Position = model.Position, Gender = model.Gender, CurrentAddress = model.CurrentAddress, Pincode = model.Pincode, City = model.City, State = model.State, Country = model.Country, Username = model.Username, Password = model.Password });
+                connection.Close();
+            }
+
+            return "Inserted";
+        }
+        public JsonResult login(signupmodel model)
+        {
+            /*DynamicParameters param = new DynamicParameters();
+            param.Add("@Username", model.Username);
+            param.Add("@Password", model.Password);
+
+            IEnumerable<SignupModel> logins = DapperORM.ReturnList<SignupModel>("getDataByUsernameAndPassword", param);
+            if(logins==null)
+                return RedirectToAction("Index");
+            else
+                return RedirectToAction("Dashboard");
+             */
+            try
+            {
+                string query = "select * from  login  where Username=@Username and Password=@Password ";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    List<signupmodel> obj = connection.Query<signupmodel>(query, new { Username = model.Username, Password = model.Password }).ToList();
+                    if (obj.Count() > 0)
+                    {
+                        return Json(new { redirect = "/Home/shopping", status = true }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { redirect = "/Home/Index", status = false }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+     /*   public ActionResult shopping(String name, String pass)
+        {
+            System.Diagnostics.Debug.WriteLine(" Dashboard This will be displayed in output window" + "name=" + name + " " + "pass=" + pass);
+            ViewData["Username"] = name;
+            ViewData["Password"] = pass;
+            return View();
+        } */
+      /*  public ActionResult Productpage(signupmodel model)
+        {
+            try
+            {
+                string query = "select * from login  where Username=@Username and Password=@Password ";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    return View(connection.Query<signupmodel>(query, new { Username = model.Username, Password = model.Password }));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        } */
+
+
+
+
+
+        public ActionResult shopping()
+        {
+            return View();
+        }
+        public ActionResult Productpage()
+        {
+            return View();
+        }
+        /*  public ActionResult dashboard()
+          {
+             return View();
+         }*/
+        public ActionResult shopping1()
+        {
+            return View();
+        }
+        /*   public ActionResult login(String name, String pass)
+           {
+               System.Diagnostics.Debug.WriteLine(" Dashboard This will be displayed in output window" + "name=" + name + " " + "pass=" + pass);
+               ViewData["Username"] = name;
+               ViewData["Password"] = pass;
+               return View();
+           } */
+
+        [HttpPost]
+        public JsonResult getPins()
+        {
+
+            string name = Request.Form["pincode"];
+            string url = string.Format("https://api.postalpincode.in/pincode/" + name);
+            System.Net.WebRequest reqObj = System.Net.WebRequest.Create(url);
+            var httpResponse = reqObj.GetResponse();
+            string result = "";
+            using (var streaReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streaReader.ReadToEnd();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public new ActionResult Profile(signupmodel model)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                List<signupmodel> list = connection.Query<signupmodel>("Select * from login").ToList();
+                connection.Close();
+
+                return View(list);
+
+
+            }
+
+        }
+
+    }
+}

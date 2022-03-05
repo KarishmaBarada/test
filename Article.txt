@@ -1,0 +1,66 @@
+What is Testing?
+  defination of testing related to some realtime example.
+  testing realted to software .
+  types of testing i.e by manually and automation.
+What is Manual and Automation Testing?
+Comparision of manual and automation testing in nowdays.
+Strongest impact of Manual testing now days .
+Reason why we should follow manual testing when their is automation testing in the market.
+Value on importance of Manual Testing
+We can add some types of testing of manual and benifits of manual testing.
+
+
+
+
+
+
+
+
+What is Testing?
+In general, testing is finding out how well something works. In terms of human beings, testing tells what level of knowledge or skill has been acquired. 
+In computer hardware and software development, testing is used at key checkpoints in the overall process to determine whether objectives are being met.
+Example of testing:
+ A real-world example would be a driver pressing the hazard lights button in their car and observing both that:
+a) the hazard lights begin to toggle, and 
+b) that the indicator lights on the instrument cluster are illuminated.
+ Finally, manual testing is done during the development phase by the team writing the software.
+    
+     Software testing is the process of evaluating and verifying that a software product or application does what it is supposed to do.
+ The benefits of testing include preventing bugs, reducing development costs and improving performance.
+       
+
+
+  Picture this. Your organization has been working hard on its product for two years. The release of the first version is approaching quickly, and everyone is excited. The stakes are high, so people are nervous, but they’re also confident on the quality of their work.
+
+Then, the big day finally comes… and it’s terrible. Sure, the application looks great, and its features are fantastic.
+ However, the app is riddled with embarrassing bugs. Users aren’t satisfied and the reviews are unforgiving.
+
+How could this be prevented? The answer is, of course, software testing.
+
+To err is human. No matter how much of a perfectionist you are, we’re all bound to make mistakes. 
+Every organization has an end goal that comes with its own set of expectations.
+
+For some businesses, success is indicated by a high frequency of real outcomes matching expected results.
+ But before reaching their end goal, every firm has to face the consequences of human errors.
+
+No enterprise can use manual error as an excuse for delivering a compromised product.
+To ensure a high-quality product, there has to be something in place to pick out errors. 
+Software testing is an essential solution to this problem for software development companies.
+
+In this post, I’m going to cover some software testing basics that you need to know. Here are some of the topics you’ll read about: 
+
+Software testing definition
+The importance of software testing
+The types of software testing
+How does the software testing process work?
+How can you decide which types of software tests to use?
+
+
+
+     how testing can be done ?
+  it can be done by manual or using some tools like automation .
+  
+
+Manual testing :  Manual software testing is when human testers check the quality of a new application without using automation tools or scripting. 
+The purpose is to identify bugs or defects, 
+ensure the product is error-free, and check it conforms to specified functional requirements.

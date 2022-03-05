@@ -1,0 +1,35 @@
+  NORMAL DISTRIBUTION
+    The normal distribution is a continuous probability distribution that is symmetrical on both sides of the mean,
+ so the right side of the center is a mirror image of the left side.
+The area under the normal distribution curve represents probability and the total area under the curve sums to one.
+out of 100% 68% of the data is lying on the mean point.
+For a perfectly normal distribution the mean, median and mode will be the same value, visually represented by the peak of the curve.
+    The normal distribution is often called the bell curve because the graph of its probability density looks like a bell.
+ It is also known as called Gaussian distribution
+         A normal distribution is determined by two parameters the mean and the variance.
+ A normal distribution with a mean of 0 and a standard deviation of 1 is called a standard normal distribution.
+
+
+  HOW IT WORKS OR ITS USES?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  percentile

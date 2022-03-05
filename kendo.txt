@@ -1,0 +1,83 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/kendo.all.min.js"></script>
+    <title>kendo</title>
+</head>
+<body>
+    <div> 
+        <input id="date"/>
+        <div id="grid">
+
+        </div>
+    </div>
+    <script>
+        $('#date').kendoDatePicker();
+        var element = $("#grid").kendoGrid({
+            dataSource: {
+               
+                transport: {
+                    read: "/Home/getDatas"
+                },
+                pageSize: 6,
+                serverPaging: true,
+                serverSorting: true
+            },
+            height: 600,
+            sortable: true,
+            pageable: true,
+            detailInit: detailInit,
+            dataBound: function () {
+                this.expandRow(this.tbody.find("tr.k-master-row").first());
+            },
+            columns: [
+                {
+                    field: "FullName",
+                    title: "First Name",
+                    width: "110px"
+                },
+                {
+                    field: "DOB",
+                    title: "Last Name",
+                    width: "110px"
+                },
+               
+            ]
+        });
+
+        function detailInit(e) {
+            $("<div/>").appendTo(e.detailCell).kendoGrid({
+                dataSource: {
+                    
+                    transport: {
+                        read: " / Home / getDatas"
+                    },
+                   serverPaging: true,
+                    serverSorting: true,
+                    serverFiltering: true,
+                    pageSize: 10,
+                    filter: { field: "EmployeeID", operator: "eq", value: e.data.EmployeeID }
+                },
+                scrollable: false,
+                sortable: true,
+                pageable: true,
+                columns: [
+                    { field: "OrderID", width: "110px" },
+                    { field: "ShipCountry", title: "Ship Country", width: "110px" },
+                    { field: "ShipAddress", title: "Ship Address" },
+                    { field: "ShipName", title: "Ship Name", width: "300px" }
+                ]
+            });
+        }
+    </script>
+</body>
+</html>
